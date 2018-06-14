@@ -1,0 +1,15 @@
+#trigger {
+  display: none;
+}
+.checker {
+  background-image: url("chSl.png");
+  background-position: left center;
+  background-size: auto 100%;
+  width: 32px;
+  height: 32px;
+  background-repeat: no-repeat;
+}
+#trigger:checked + .checker {
+  background-position: right center;
+}
+

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block navbar %}
+<body>
+    <div class="jumbotron">
+        <form class="site-form" action="{% url 'accounts:login' %}" method="post">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" value="Log In" role="button" class="btn btn-sm btn-success">
+        </form>
+    </div>
+</body>
+
+{% endblock %}

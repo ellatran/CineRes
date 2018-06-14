@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="{% static 'pics/video-camera.png' %}">
+
+    <title>Uni.li Cinemas</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/jumbotron.css' %}" rel="stylesheet">
+    <link href="{% static 'css/pretty-checkbox.min.css' %}" rel="stylesheet">
+    {% block css %}
+    {% endblock %}
+</head>
+<body>
+    <nav style="background:#44443f !important" class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <img src="{% static 'pics/main-logo.png' %}" style="height: 30px">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'reservation:index' %}">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'reservation:liste' %}">All Films</a>
+          </li>
+        </ul>
+          {% if user.is_authenticated %}
+              <form class="logout-link" action="{% url 'accounts:logout' %}" method="post">
+                  {% csrf_token %}
+                  <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Logout</button>
+              </form>
+          {% else %}
+              <a href="{% url 'accounts:login' %}" class="btn btn-outline-success my-2 my-sm-0" role="button">Login</a>
+              <a>'</a>
+              <a href="{% url 'accounts:signup' %}" class="btn btn-outline-warning my-2 my-sm-0" role="button">Sign Up</a>
+          {% endif %}
+      </div>
+    </nav>
+{% block navbar %}
+{% endblock %}
+
+    <footer class="container">
+      <p>&copy; #uni.li IS 2018</p>
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block navbar %}
+    <div class="jumbotron">
+        <h1><i>Selected Film:</i> {{ screen.film }}</h1>
+        <p>Audi: {{ screen.audi }} Date & Time: {{ screen.date_time }}</p>
+    </div>
+<div class="container">
+    <div class="container text-center">
+        <h4 class="border border-success" style="width: 800px" >SCREEN</h4>
+    </div>
+    <form method="post">
+        {% csrf_token %}
+        {% for seat in seats %}
+            {% if forloop.counter0|divisibleby:24 %}<div class="row">
+                    <div class="col-md-auto">{% endif %}
+                        <div class="form-check form-check-inline">
+                            {% if seat.Status == 'RSV' %}
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="seat" value="{{ seat.id }}" checked disabled>
+                                <label class="form-check-label" for="inlineCheckbox1"></label>
+                            {% else %}
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="seat" value="{{ seat.id }}">
+                                <label class="form-check-label" for="inlineCheckbox1"></label>
+                            {% endif %}
+                        </div>
+                    {% if forloop.counter|divisibleby:24 %}</div>
+            </div>{% endif %}
+        {% endfor %}
+        <br>
+        <input class="btn btn-danger" type="submit" value="Book">
+    </form>
+</div>
+
+{% endblock %}
+

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block navbar %}
+    <div class="media">
+        <img class="align-self-start mr-3" src="{{ filmInfo.poster.url }}" style="width:270px;height:400px;">
+        <div class="media-body">
+        <br>
+            <h2><strong>Movie:</strong> {{ filmInfo.filmName }}</h2>
+            <div class="container">
+                <h3>Please select a screening</h3>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    {% for screening in Screenings %}
+                        <div class="radio">
+                            <label><input type="radio" name="scrID" value="{{ screening.id }}"> Audi No:{{ screening.audi }} {{ screening.date_time }}</label>
+                        </div>
+                    {% endfor %}
+                    <input type="submit" class="btn btn-primary" role="button" value="Select">
+                </form>
+            </div>
+            <form class='site-form' method="post">
+                {{ form }}
+            </form>
+         </div>
+    </div>
+    <br>
+
+
+{% endblock %}

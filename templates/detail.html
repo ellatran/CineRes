@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block navbar %}
+    <div class="media">
+        <img class="align-self-center mr-3" src="{{ filmInfo.poster.url }}" style="width:270px;height:400px;">
+        <div class="media-body">
+            <h3>{{ filmInfo.filmName }}</h3>
+            <p><strong>Director:</strong> {{ filmInfo.filmDirector }} <strong>Year:</strong> {{ filmInfo.filmYear }}</p>
+            <p><strong>Actors:</strong> {{ filmInfo.filmActors }}</p>
+            <p class="mb-0">{{ filmInfo.filmPlot }}</p>
+            <br>
+            <p><strong>Country:</strong> {{ filmInfo.filmCountry }}</p>
+            <a href="{% url 'reservation:screenings' filmInfo.id %}" class="btn btn-primary" role="button">Book Now</a>
+        </div>
+    </div>
+    <br>
+    <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="{{ filmInfo.Trailer }}" allowfullscreen></iframe>
+    </div>
+
+{% endblock %}

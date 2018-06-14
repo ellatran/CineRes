@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block navbar %}
+<div style="background: !important" class="jumbotron">
+    <h1>Booking Successful!</h1>
+</div>
+<div class="container">
+    <div class="card text-white bg-dark mb-3" style="max-width: 36rem;">
+        <div class="row">
+            <div class="col-md-4">
+                <img class="card-img-overlay" src="{{ resv.Screening.film.poster.url }}" style="max-height: 300px;max-width: 210px;height: auto;width: auto" alt="Card image cap">
+            </div>
+            <div class="col">
+                <div class="card-header">Booking ID: {{ resv.id }}</div>
+                <div class="card-body">
+                    <h5 class="card-title">Film: {{ resv.Screening.film }}</h5>
+                    <p class="card-text">Date: {{ resv.Screening.date_time }} Audi: {{ resv.Screening.audi }}</p>
+                    <p class="card-text">Seats: {% for seat in seating %} {{ seat.seatPos }} {% endfor %}</p>
+                    <p class="card-text">Name: {{ resv.customer }}</p>
+                    <p class="card-text">Booking Time: {{ resv.purchaseDate }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
